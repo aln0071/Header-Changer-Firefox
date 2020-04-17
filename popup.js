@@ -1,14 +1,16 @@
 'use strict';
 
 function keyup(e) {
-    chrome.tabs.executeScript(null,
+    browser.tabs.executeScript(null,
         {code:"document.title='"+e.target.value+"'"});
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     var title = document.getElementById('title');
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs)=>{
+    console.log(title)
+    browser.tabs.query({active: true, currentWindow: true}, (tabs)=>{
         title.value = tabs[0].title;
+        console.log(tabs)
         title.focus();
         title.select();
     })
